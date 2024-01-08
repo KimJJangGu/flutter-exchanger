@@ -1,6 +1,8 @@
+import 'package:exchanger/di/di_setup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  diSetUp();
   runApp(const MyApp());
 }
 

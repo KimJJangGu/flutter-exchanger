@@ -10,8 +10,21 @@ class ExchangeRepositoryImpl implements ExchangeRepository {
 
   @override
   Future<Result<List<Exchange>>> getExchangeList() async {
+    try {
+      Result<Map<String, dynamic>> result = await _exchangeApi.currencyApi();
 
+      result.when(
+        success: (data) {
+          print(data);
+        },
+        error: (e) {
+
+        },
+      );
+    } catch (e) {
+      print(e);
+    }
+
+    return Result.error('e');
   }
-
-
 }

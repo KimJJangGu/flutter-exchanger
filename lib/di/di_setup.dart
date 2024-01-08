@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void diSetUp {
+void diSetUp() {
   getIt.registerSingleton<ExchangeApi>(ExchangeApiImpl());
   getIt.registerSingleton<ExchangeRepository>(ExchangeRepositoryImpl(exchangeApi: getIt<ExchangeApi>()));
 }
