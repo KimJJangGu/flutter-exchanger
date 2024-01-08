@@ -1,5 +1,8 @@
 import 'package:exchanger/core/result.dart';
+import 'package:exchanger/data/data_source/exchangeApiImpl.dart';
 import 'package:exchanger/data/data_source/exchange_api.dart';
+import 'package:exchanger/data/dto/exchange_dto.dart';
+import 'package:exchanger/data/mapper/exchange_mapper.dart';
 import 'package:exchanger/domain/model/exchange.dart';
 import 'package:exchanger/domain/repository/exchange_repository.dart';
 
@@ -11,20 +14,22 @@ class ExchangeRepositoryImpl implements ExchangeRepository {
   @override
   Future<Result<List<Exchange>>> getExchangeList() async {
     try {
-      Result<Map<String, dynamic>> result = await _exchangeApi.currencyApi();
+      Result<List<dynamic>> result = await _exchangeApi.currencyApi();
 
-      result.when(
-        success: (data) {
-          print(data);
-        },
-        error: (e) {
+      if(result is Success<List<dynamic>>) {
+        return Result.success(result.data.map((e) => ExchangeDto.fromJson(e).toExchangeModel()).toList());
+      }
 
-        },
-      );
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
 
-    return Result.error('e');
+    return const Result.error('네트워크 에러');
   }
+}
+
+void main() async {
+  ExchangeRepositoryImpl exchangeRepositoryImpl = ExchangeRepositoryImpl(exchangeApi: ExchangeApiImpl());
+
+  Result<List<dynamic>> result = await exchangeRepositoryImpl.getExchangeList();
+
+  print(result);
 }
