@@ -1,4 +1,5 @@
 import 'package:exchanger/di/di_setup.dart';
+import 'package:exchanger/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: routes,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
