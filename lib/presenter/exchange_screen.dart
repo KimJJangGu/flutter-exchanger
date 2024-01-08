@@ -12,7 +12,6 @@ class ExchangeScreen extends StatefulWidget {
 }
 
 class _ExchangeScreenState extends State<ExchangeScreen> {
-
   @override
   void initState() {
     Future.microtask(() {
@@ -35,7 +34,10 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
         itemCount: exchangeState.exchangeList.length,
         itemBuilder: (context, index) {
           final Exchange exchange = exchangeState.exchangeList[index];
-          return Text('$exchange');
+          return ListTile(
+            title: Text('${exchange.currencyName}(${exchange.currencyUnit})'),
+            subtitle: Text('살때: ${exchange.transferBuying}\t/\t팔때: ${exchange.transferSelling}'),
+          );
         },
       ),
     );
