@@ -12,6 +12,16 @@ class ExchangeScreen extends StatefulWidget {
 }
 
 class _ExchangeScreenState extends State<ExchangeScreen> {
+
+  @override
+  void initState() {
+    Future.microtask(() {
+      context.read<ExchangeViewModel>().getExchangeInfo();
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ExchangeViewModel exchangeViewModel = context.watch();
