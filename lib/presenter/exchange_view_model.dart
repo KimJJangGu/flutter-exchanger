@@ -31,7 +31,6 @@ class ExchangeViewModel extends ChangeNotifier {
         _state = _state.copyWith(isLoading: false, exchangeList: result.data);
       case Error<List<Exchange>>():
         _state = _state.copyWith(isLoading: false, exchangeList: []);
-        print(result.e);
         _uiEventController.add(ExchangeUiEvent.showSnackBar(result.e));
     }
     notifyListeners();

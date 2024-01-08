@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 final GetIt getIt = GetIt.instance;
 
 void diSetUp() {
-  getIt.registerSingleton<ExchangeApi>(ExchangeMockApi());
+  getIt.registerSingleton<ExchangeApi>(ExchangeApiImpl());
   getIt.registerSingleton<ExchangeRepository>(ExchangeRepositoryImpl(exchangeApi: getIt<ExchangeApi>()));
   getIt.registerSingleton<GetExchangeUseCase>(GetExchangeUseCase(exchangeRepository: getIt<ExchangeRepository>()));
 
