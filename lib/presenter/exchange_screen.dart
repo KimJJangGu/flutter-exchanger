@@ -51,6 +51,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('오늘의 환율'),
+        backgroundColor: Colors.blue,
       ),
       body: exchangeState.isLoading ?
       const Center(child: CircularProgressIndicator()) :

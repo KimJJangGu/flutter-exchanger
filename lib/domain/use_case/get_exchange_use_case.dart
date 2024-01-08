@@ -8,7 +8,13 @@ class GetExchangeUseCase {
   GetExchangeUseCase({required ExchangeRepository exchangeRepository})
       : _exchangeRepository = exchangeRepository;
 
-  Future<Result<List<Exchange>>> execute() {
-    return _exchangeRepository.getExchangeList();
+  Future<Result<List<Exchange>>> execute() async {
+    Result<List<Exchange>> result = await _exchangeRepository.getExchangeList();
+
+    return result.when(
+      success: (data) =>
+          Result.success(data.where((exchange) => exchange.currencyUnit != 'KRW').toList()),
+      error: (e) => Result.error(e),
+    );
   }
 }
