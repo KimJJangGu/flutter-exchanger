@@ -7,7 +7,7 @@ extension ExchangeMapper on ExchangeDto {
       currencyName: curNm ?? '통화명 없음',
       currencyUnit: curUnit ?? '통화코드 없음',
       transferBuying: _parseTransfer(ttb),
-      transferSelling: _parseTransfer(ttb),
+      transferSelling: _parseTransfer(tts),
     );
   }
 

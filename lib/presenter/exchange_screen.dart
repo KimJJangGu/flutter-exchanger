@@ -62,7 +62,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
             final Exchange exchange = exchangeState.exchangeList[index];
             return ListTile(
               title: Text('${exchange.currencyName}(${exchange.currencyUnit})'),
-              subtitle: Text('살때: ${exchange.transferBuying}\t/\t팔때: ${exchange.transferSelling}'),
+              subtitle: Text('송금받을때: ${exchange.transferBuying}원\t/\t송금보낼때: ${exchange.transferSelling}원'),
             );
           },
         ),
