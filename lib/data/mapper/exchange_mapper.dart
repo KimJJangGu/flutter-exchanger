@@ -6,8 +6,15 @@ extension ExchangeMapper on ExchangeDto {
     return Exchange(
       currencyName: curNm ?? '통화명 없음',
       currencyUnit: curUnit ?? '통화코드 없음',
-      transferBuying: double.parse(ttb ?? '0.0'),
-      transferSelling: double.parse(tts ?? '0.0'),
+      transferBuying: _parseTransfer(ttb),
+      transferSelling: _parseTransfer(ttb),
     );
+  }
+
+  double _parseTransfer(String? transfer) {
+    if(transfer == null) {
+      return 0.0;
+    }
+    return double.parse(transfer.replaceAll(',', ''));
   }
 }

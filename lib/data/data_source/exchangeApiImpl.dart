@@ -10,6 +10,6 @@ class ExchangeApiImpl implements ExchangeApi {
   Future<Result<List<dynamic>>> currencyApi() async {
     final http.Response response = await http.get(Uri.parse('https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=$apiKey&data=AP01'));
 
-    return Result.success(jsonDecode(response.body));
+    return Result.success(jsonDecode(response.body) as List<dynamic>);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:exchanger/core/result.dart';
-import 'package:exchanger/data/data_source/exchangeApiImpl.dart';
 import 'package:exchanger/data/data_source/exchange_api.dart';
 import 'package:exchanger/data/dto/exchange_dto.dart';
 import 'package:exchanger/data/mapper/exchange_mapper.dart';
@@ -20,16 +19,8 @@ class ExchangeRepositoryImpl implements ExchangeRepository {
         return Result.success(result.data.map((e) => ExchangeDto.fromJson(e).toExchangeModel()).toList());
       }
 
-    } catch (e) {}
+    } catch (e) { }
 
     return const Result.error('네트워크 에러');
   }
-}
-
-void main() async {
-  ExchangeRepositoryImpl exchangeRepositoryImpl = ExchangeRepositoryImpl(exchangeApi: ExchangeApiImpl());
-
-  Result<List<dynamic>> result = await exchangeRepositoryImpl.getExchangeList();
-
-  print(result);
 }
